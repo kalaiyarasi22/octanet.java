@@ -1,0 +1,79 @@
+package atm;
+import java.util.*;
+
+class Account{
+	String name;
+	int age;
+	float amount = 0;
+	
+	void setDetails() {
+		this.name=name;
+		this.age=age;
+		this.amount=amount;
+	}
+	
+	void display() {
+		System.out.println("Name :"+name);
+		System.out.println("Age :"+age);
+		System.out.println("Balance :"+amount);
+	}
+	
+}
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner scan=new Scanner(System.in);
+		Account a1=new Account();
+		System.out.println("Enter Name:");
+		a1.name=scan.nextLine();
+		System.out.println("Enter age:");
+		a1.age=scan.nextInt();
+		System.out.println("Enter Deposit Amount:");
+		a1.amount=scan.nextFloat();
+		a1.setDetails();
+		a1.display();
+		
+		
+		do {
+			System.out.println("1.Deposit , 2.Withdrawal, 3.Exit");
+			int c=scan.nextInt();
+			switch(c) {
+			case 1:
+				System.out.println("Enter Deposit Amount:");
+				float money=scan.nextFloat();
+				a1.amount += money;
+				System.out.println("Total Amount:"+a1.amount);
+				break;
+				
+			case 2:
+				System.out.println("Enter Withdrawal Amount:");
+				money=scan.nextFloat();
+				if(a1.amount-money>=500){
+					a1.amount -= money;
+					System.out.print("Total Balance: "+a1.amount);
+				}
+				else {
+					System.out.println("Cannot withdraw amount");
+				}
+				break;
+			
+			case 3:
+				System.out.println("Exiting...");
+				scan.close();
+				return; 
+			
+				
+			default:
+				System.out.println("Invalid");
+			}
+			
+			
+			
+		}while(true);
+
+	}
+
+}
